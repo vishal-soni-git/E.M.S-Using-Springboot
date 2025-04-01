@@ -1,0 +1,29 @@
+<!-- Spring Boot compatible Thymeleaf template for Error Page -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <style>
+        body { background-color: #7284f3; }
+        .error--gif { background-color: #7284f3; padding: 20px; }
+        .error--gif img { height: 400px; width: 500px; }
+    </style>
+</head>
+<body>
+<center>
+    <div class='error--gif'>
+        <img th:src="@{/images/error.gif}" alt="Error GIF">
+    </div>
+    <div class="error-container">
+        <h1>Error Encountered</h1>
+        <p>Oops! Something went wrong.</p>
+        <p>Error Details:</p>
+        <p th:if="${error != null}" th:text="${error}"></p> <!-- Display error from Model attribute -->
+        <div class="footer">
+            <p>&copy; 2025 ems.com</p>
+        </div>
+    </div>
+</center>
+</body>
+</html>

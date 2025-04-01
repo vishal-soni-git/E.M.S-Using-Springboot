@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Employee Management System Login">
+  <meta name="author" content="Vishal Soni">
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">  
+  <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+  <link th:href="@{/css/style1.css}" rel="stylesheet">
+
+
+  <title>Employee Management System - Login</title>
+</head>
+
+<body>
+  <section class="form-02-main">
+   <center><div class="title">Employee Management System</div></center>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="_lk_de">
+
+            <div class="form-03-main">
+
+              <form th:action="@{/login}" method="post">
+
+                <div>
+                  <label class='user--text' for="User">User</label>
+                  <select class='user--select' id="User" name="userRole">
+                    <option value="employee">Employee</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+
+                <div class="logo">
+                  <img th:src="@{/images/user.png}" alt="User Image">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="email" class="form-control _ge_de_ol" placeholder="Enter Email" required>
+                </div>
+
+                <div class="form-group" style="position: relative;">
+                  <input type="password" name="password" id="password" class="form-control _ge_de_ol" placeholder="Enter Password" required>
+                  <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                      <i class="fa fa-eye"></i>  <!-- Eye closed initially -->
+                  </span>
+              </div>
+              
+                <div class="checkbox form-group">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                  </div>
+                  <a th:href="@{/forgot-password}">Forgot Password</a>
+                </div>
+
+                <div class="form-group">
+                  <div class="_btn_04">
+                    <button class='button--click' type="submit">Login</button>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('input[name="password"]');
+
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+
+        // Toggle eye icon
+        this.innerHTML = type === 'password' ? '<i class="fa fa-eye"></i>' : '<i class="fa fa-eye-slash"></i>';
+    });
+</script>
+
+
+</body>
+
+</html>

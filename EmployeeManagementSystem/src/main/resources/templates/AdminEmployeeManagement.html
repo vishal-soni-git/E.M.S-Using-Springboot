@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+
+    <style>
+        .card {
+            background-color: rgb(236, 243, 247);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            background-color: rgb(212, 215, 243);
+        }
+        .card i {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+        .container {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li><a th:href="@{/admin/AdminDashboard}" class='active'><i class="fas fa-tachometer-alt"> </i><span>Dashboard</span></a></li>
+            <li><a href="/admin/#"><i class="fas fa-user"> </i><span>Account</span></a></li>
+            <li><a th:href="@{/admin/EmployeeManagement}"><i class="fas fa fa-users"> </i><span>Employee Management</span></a></li>
+            <li><a th:href="@{/admin/leaveManagement}"><i class="fas fa-bed"> </i><span>Leave Management</span></a></li>
+            <li><a href="/admin/AdminAttendence"><i class="fas fa-id-card"> </i><span>Attendance Management</span></a></li>
+            <li><a th:href="@{/admin/uploadUpdates}"><i class="fas fa-star"> </i><span>Upload Updates</span></a></li>
+            <li class="logout"><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"> </i><span>Logout</span></a></li>
+        </ul>
+    </div>
+
+    <div class='main--content'>
+        <div class="header--wrapper">
+            <div class="header--title">
+                <span>Primary</span>
+                <h2>Dashboard</h2>
+            </div>
+            <div class="user--info">
+                <img th:src="@{/images/emp.jpg}" alt="">
+            </div>
+        </div>
+
+        <div class='content--header'>Employee Management</div>
+
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <!-- Add Employee -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <i class="fa fa-user-plus text-success"></i>
+                            <h4 class="card-title mt-3">Add Employee</h4>
+                            <a href="#" class="btn btn-success w-100">Add</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Remove Employee -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <i class="fa fa-user-minus text-danger"></i>
+                            <h4 class="card-title mt-3">Remove Employee</h4>
+                            <a href="#" class="btn btn-danger w-100">Remove</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Update Employee -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <i class="fa fa-user-edit text-primary"></i>
+                            <h4 class="card-title mt-3">Update Employee</h4>
+                            <a href="#" class="btn btn-primary w-100">Update</a>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- See Employees -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <i class="fa fa-users text-info"></i>
+                            <h4 class="card-title mt-3">See Employees</h4>
+                            <a href="#" class="btn btn-info w-100">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+               
+
+           
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</body>
+
+</html>

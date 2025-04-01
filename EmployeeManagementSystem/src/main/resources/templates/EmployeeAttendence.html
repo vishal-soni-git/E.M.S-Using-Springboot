@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+   <script src="https://unpkg.com/html5-qrcode"></script>
+
+</head>
+<body>
+ <div class="sidebar">
+    <div class="logo"></div>
+        <ul class="menu">
+            <li><a th:href="@{/employee/EmployeeDashboard}" class='active'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a th:href="@{/employee/EmployeeProfile}"> <i class="fas fa-user"></i><span>Profile</span></a></li>
+            <li><a th:href="@{/employee/EmployeeLeave}"> <i class="fas fa-bed"></i><span>Leave Request</span></a></li>
+            <li><a th:href="@{/employee/EmployeeAttendence}"><i class="fas fa-id-card"></i><span>Attendance</span></a></li>
+            <li><a th:href="@{/employee/EmployeeUpdates}"><i class="fas fa-star"></i><span>Updates</span></a></li>
+            <li class="logout"><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+ </div>
+ <div class='main--content'>
+    <div class="header--wrapper">
+        <div class="header--title"><h2>Attendance</h2></div>
+        <div class="user--info"><img th:src="@{/images/emp.jpg}" alt=""></div>
+    </div>
+   
+    <div class='content--header'>MARKING ATTENDANCE</div>
+
+
+        <h1 class='content--header'>Scan QR Code for Attendance</h1>
+
+        <div class="attendance-content">
+
+               <div class="attendance-content-inner1">
+                <div id="reader" style="width: 400px; height: 300px; margin-left: 40px;"></div>
+                
+                <form id="attendanceForm" method="POST" action="/employee/mark">
+                    <input type="hidden" id="employeeId" name="employeeId">
+                </form>
+            </div>
+                
+
+            <div class="attendance-content-inner2">
+                <div class="attendence-container">
+                    <div class="attendence-details-card" th:if="${employeeDetails}">
+                        <h1>Attendance Details</h1>
+                        <h2>Employee Information</h2>
+                        <p><b>Employee ID:</b> <span th:text="${employeeDetails.id}"></span></p>
+                        <p><b>Name:</b> <span th:text="${employeeDetails.name}"></span></p>
+                        <p><b>Email:</b> <span th:text="${employeeDetails.email}"></span></p>
+                        <p><b>Designation:</b> <span th:text="${employeeDetails.role}"></span></p>
+                    </div>
+                
+                    <div class="attendence-details-card" th:if="${attendance}">
+                        <h2>Attendance Information</h2>
+                        <p><b>Status:</b> <span th:text="${attendance.status}"></span></p>
+                        <p><b>Date:</b> <span th:text="${attendance.date}"></span></p>
+                        <p><b>Time:</b> <span th:text="${attendance.time}"></span></p>
+                    </div>
+                </div>
+            </div>
+           
+         </div>
+         <div class="attendence-success-message" th:if="${message}">
+            <p><b th:text="${message}"></b></p>
+        </div>
+
+    <script>
+        function onScanSuccess(decodedText) {
+            document.getElementById('employeeId').value = decodedText;
+            document.getElementById('attendanceForm').submit();
+        }
+    
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess);
+    </script>
+
+ </div>
+</body>
+</html>

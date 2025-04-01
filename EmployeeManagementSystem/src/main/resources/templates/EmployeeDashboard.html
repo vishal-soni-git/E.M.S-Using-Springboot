@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+ <div class="sidebar">
+    <div class="logo"></div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/employee/EmployeeDashboard}" class='active'>
+                    <i class="fas fa-tachometer-alt"> </i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/employee/EmployeeProfile}">
+                    <i class="fas fa-user"> </i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/employee/EmployeeLeave}">
+                    <i class="fas fa-bed"> </i>
+                    <span>Leave Request</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/employee/EmployeeAttendence}">
+                    <i class="fas fa-id-card"> </i>
+                    <span>Attendance</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/employee/EmployeeUpdates}">
+                    <i class="fas fa-star"> </i>
+                    <span>Updates</span>
+                </a>
+            </li>
+
+            <li class="logout">
+                <a th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt"> </i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+ </div>
+
+ <div class='main--content'>
+    <div class="header--wrapper">
+        <div class="header--title">
+            <span>Primary</span>
+            <h2>Dashboard</h2>
+        </div>
+        <div class="user--info">
+            <img th:src="@{/images/emp.jpg}" alt="User Image">
+        </div>
+    </div>
+
+
+    <div class="ChartCss">
+
+        <canvas id="barChart" ></canvas>
+    
+                <script>
+                const xValues = ["Leaves","Presence"];
+                const yValues = [20,80];
+                const barColors = ["red","blue"];
+                
+                new Chart("barChart", {
+                  type: "bar",
+                  data: {
+                    labels: xValues,
+                    datasets: [{
+                      backgroundColor: barColors,
+                      data: yValues
+                    }]
+                  },
+                  options: {
+                    legend: {display: false},
+                    scales: {
+                      yAxes: [{
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }]
+                    }, 
+                    title: {
+                      display: true,
+                      text: "Attandance This Month",
+                      fontSize: 24
+                    }
+                  }
+                });
+                </script>
+    
+   
+                 <canvas id="pieChart"></canvas>
+                 
+                 <script>
+                 const xValues1 = ["Leaves","Presence"];
+                 const yValues1 = [20,80];
+                 const barColors1 = ["red","blue"];
+                 
+                 new Chart("pieChart", {
+                   type: "pie",
+                   data: {
+                     labels: xValues1,
+                     datasets: [{
+                       backgroundColor: barColors1,
+                       data: yValues1
+                     }]
+                   },
+                   options: {
+                     title: {
+                       display: true,
+                       text: "Attandance This Month",
+                       fontSize:24
+                     }
+                   }
+                 });
+                 </script>
+    </div>               
+ </div>
+</body>
+</html>

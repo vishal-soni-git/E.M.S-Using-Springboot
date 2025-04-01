@@ -1,0 +1,68 @@
+<!-- Updated Thymeleaf template for Leave Request Page with CSS compatibility and clear options -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Requests</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="sidebar">
+    <div class="logo"></div>
+    <ul class="menu">
+        <li><a th:href="@{/employee/EmployeeDashboard}" class='active'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+        <li><a th:href="@{/employee/EmployeeProfile}"><i class="fas fa-user"></i><span>Profile</span></a></li>
+        <li><a th:href="@{/employee/EmployeeLeave}"><i class="fas fa-bed"></i><span>Leave Request</span></a></li>
+        <li><a th:href="@{/employee/EmployeeAttendence}"><i class="fas fa-id-card"></i><span>Attendance</span></a></li>
+        <li><a th:href="@{/employee/EmployeeUpdates}"><i class="fas fa-star"></i><span>Updates</span></a></li>
+        <li class="logout"><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+    </ul>
+</div>
+<div class='main--content'>
+    <div class="header--wrapper">
+        <div class="header--title"><h2>Leave Requests</h2></div>
+        <div class="user--info"><img th:src="@{/images/emp.jpg}" alt=""></div>
+    </div>
+    <div class='content--header'>Taking Leave</div>
+    <div class='content--form'>
+        <form th:action="@{/employee/EmployeeLeave/process}" method="POST" class='form--design'>
+            <label for="id">Employee ID</label>
+            <input type="text" name="employeeId" id="myInput" placeholder='Enter your ID' required><br><br>
+            <label for="type">Leave Type</label>
+            <select class='user--select'  name="leave_Type" required>
+                <option value="Sick Leave">Sick Leave</option>
+                <option value="Vacation Leave">Vacation Leave</option>
+                <option value="Personal Leave">Personal Leave</option>
+                <option value="Parental Leave">Parental Leave</option>
+                <option value="Bereavement Leave">Bereavement Leave</option>
+                <option value="Public Holidays">Public Holidays</option>
+                <option value="Compensatory Time">Compensatory Time</option>
+                <option value="Unpaid Leave">Unpaid Leave</option>
+            </select><br><br>
+            <label for="sdate">Start Date</label>
+            <input type="date" name="start_Date" id="myInput" required><br><br>
+            <label for="edate">End Date</label>
+            <input type="date" name="end_Date" id="myInput" required><br><br>
+            <button class='button--click' type="submit">Submit</button>
+        </form>
+    </div>
+    <div class='show--table'>
+        <table class='show--table--content'>
+            <tr>
+                <th>Request ID</th><th>ID</th><th>Leave Type</th><th>Start Date</th><th>End Date</th><th>Status</th>
+            </tr>
+            <tr th:each="leave : ${EmployeeLeaves}">
+                <td th:text="${leave.id}"></td>
+                <td th:text="${leave.employeeId}"></td>
+                <td th:text="${leave.leave_Type}"></td>
+                <td th:text="${leave.start_Date}"></td>
+                <td th:text="${leave.end_Date}"></td>
+                <td th:text="${leave.status}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updates</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+ <div class="sidebar">
+    <div class="logo"></div>
+        <ul class="menu">
+            <li><a th:href="@{/employee/EmployeeDashboard}" class='active'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+            <li><a th:href="@{/employee/EmployeeProfile}"><i class="fas fa-user"></i><span>Profile</span></a></li>
+            <li><a th:href="@{/employee/EmployeeLeave}"><i class="fas fa-bed"></i><span>Leave Request</span></a></li>
+            <li><a th:href="@{/employee/EmployeeAttendence}"><i class="fas fa-id-card"></i><span>Attendance</span></a></li>
+            <li><a th:href="@{/employee/EmployeeUpdates}"><i class="fas fa-star"></i><span>Updates</span></a></li>
+            <li class="logout"><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+        </ul>
+ </div>
+ <div class='main--content'>
+    <div class="header--wrapper">
+        <div class="header--title"><h2>Updates</h2></div>
+        <div class="user--info"><img th:src="@{/images/emp.jpg}" alt=""></div>
+    </div>
+    <div class='content--header'>UPDATES</div>
+    <div class="updated-post-main">
+        <div class='updated-post' th:each="p : ${posts}">
+            <p th:text="${p.title}"></p>
+           <p th:text="${p.date}"></p>
+         <img th:src="'data:image/jpeg;base64,' + ${p.base64Image}" 
+         alt="Post Image"/><br><br>
+        </div>
+    </div>
+ </div>
+</body>
+</html>

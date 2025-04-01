@@ -1,0 +1,555 @@
+@import url("http://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background: rgba(113, 99, 186, 255);
+}
+
+.sidebar:hover {
+    width: 270px;
+    transition: 0.4s;
+}
+
+.logo {
+    height: 80px;
+    padding: 16px;
+
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover,
+.active {
+    background: #e0e0e058;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+}
+
+/* main body section*/
+.main--content {
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.header--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header--title {
+    color: rgba(113, 99, 186, 255)
+}
+
+.user--info {
+    display: flex;
+    align-items: center;
+    gap: 1;
+}
+
+.content--header {
+    font-size: 40px;
+    color: blue;
+    text-align: center;
+    text-shadow: aqua;
+    margin-bottom: 30px;
+}
+
+/*profile.jsp*/
+
+.content {
+
+    display: flex;
+
+}
+
+.content--info {
+    width: 950px;
+}
+
+.content--table {
+
+    margin-top: 20px;
+    margin-left: 370px;
+    text-align: center;
+    border-collapse: collapse;
+    background-color: #7284f3;
+
+}
+
+.content--table tr {
+
+    height: 50px;
+    /* Add a solid black border with 1px width */
+
+
+}
+
+.content--table td {
+
+    width: 270px;
+    border: 2px solid blue;
+    background-color: #99c2f1;
+}
+
+.content--image {
+    width: 200px;
+    /* Set container width */
+    height: 200px;
+    /* Set container height */
+    overflow: hidden;
+    /* Clip the image to the container */
+    border-radius: 50%;
+    /* Create a circle shape */
+
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.content--image img {
+    width: 100%;
+    /* Make sure the image fills the container */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Remove extra space */
+    object-fit: cover;
+    /* Ensure the image covers the container */
+}
+
+.profile-password-reset {
+    margin-top: 20px;
+    width: 15%;
+    padding: 10px 0px;
+    background: #070f40;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 370px;
+
+}
+
+/*leave.jsp page style*/
+
+.form--design {
+    width: 520px;
+    display: block;
+    margin: 20px auto;
+    padding: 25px 50px 25px;
+    background: rgba(164, 241, 222, 0.6);
+    border-radius: 10px;
+
+}
+
+.form--design label {
+    display: inline-block;
+    width: 110px;
+    /* Adjust label width as needed */
+    text-align: left;
+    /* Align label text to the left */
+    margin-right: 20px;
+    /* Add spacing between label and input */
+}
+
+.user--select {
+    display: inline-block;
+    width: 250px;
+    height: 35px;
+    padding: 6px 6px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 15px;
+    float: right;
+}
+
+#myInput {
+    width: 250px;
+    height: 35px;
+    margin-left: 40px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.2s linear;
+    border: 1px solid #ccc;
+    float: right;
+}
+
+#myInput:hover {
+    background-color: #f0f0f0;
+    /* Change background color on hover */
+    border: 1px blue;
+    transition: 0.2s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.97);
+}
+
+.button--click {
+    display: inline-block;
+    width: 70%;
+    padding: 12px 0px;
+    background: #2b3990;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 70px;
+}
+.button--click:hover {
+    background-color: #343c81;
+    /* Change background color on hover */
+    border: 1px rgb(4, 4, 58);
+    transition: 0.2s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.97);
+}
+
+
+.show--table {
+    margin-top: 50px;
+    margin-left: 450px;
+    width: 900px;
+    height: 500px;
+    overflow: auto;
+}
+
+.show--table--content {
+    border-collapse: collapse;
+    border-radius: 5px;
+
+}
+
+.show--table--content tr {
+    height: 33px;
+    text-align: center;
+
+}
+
+.show--table--content th {
+    width: 240px;
+    border: 2px solid black;
+    background-color: #7284f3;
+}
+
+.show--table--content td {
+    width: 240px;
+    border: 1px solid rgb(27, 7, 106);
+    background-color: #c8cffa;
+    border-collapse: collapse;
+}
+
+/*upload updates file css */
+
+.attendece--content {
+    height: 50px;
+    width: 800px;
+    background-color: #3a35be58;
+    margin-top: 20px;
+    margin-left: 250px;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+.inputfile {
+    height: 50px;
+    border-radius: 10%;
+}
+
+.upload--form{
+    width: 800px;
+    height: auto;
+    background-color: #7284f3;
+    margin-top: 10px;
+    margin-left: 450px;
+    border-radius: 10px;
+}
+
+.labelPost {
+    display: inline-block;
+    width: 100px;
+    color: #fff;
+
+    text-align: left;
+    margin-right: 20px;
+}
+.filePost {
+    width: 300px;
+    margin-bottom: 10px;
+    display: inline-block;
+    width: 250px;
+    padding: 6px 6px;
+    border-radius: 15px;
+    font-size: 15px;
+   
+}
+
+.btn-upload {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+.btn-upload:hover {
+    background-color: #45a049;
+}
+
+
+.updated-post-main {
+
+    width: 900px;
+    height: 700px;
+    background-color: rgba(58, 53, 190, 0.58);
+    margin-top: 10px;
+    margin-left: 450px;
+    border-radius: 5px;
+            
+    overflow: auto;
+}
+
+.updated-post {
+    width: 600px;
+    height: auto;
+    background-color: rgba(156, 156, 212, 0.941);
+    margin-top: 10px;
+    margin-left: 150px;
+    border-radius: 5px;
+}
+
+.updated-post p {
+    margin-left: 70px;
+    color: #faedc2;
+    font-size: 15px;
+    text-shadow: #e9f799;
+}
+
+
+.updated-post img {
+    width: 70%;
+    /* Make sure the image fills the container */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Remove extra space */
+    object-fit: cover;
+    /* Ensure the image covers the container */
+    margin-top: 7px;
+    margin-left: 60px;
+    border-radius: 5%;
+}
+
+/*ResetPassword.html*/
+
+.main {
+    display: flex;
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center items horizontally (optional) */
+    justify-content: center;
+    /* Center items vertically (optional) */
+
+}
+
+.text {
+    margin-top: 30px;
+    color: #c55050;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+    margin-left: 700px;
+}
+
+.resetPassword {
+    text-align: center;
+    height: 350px;
+    width: 550px;
+    background-color: #2b3990;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 700px;
+}
+
+.inputT {
+    margin-top: 30px;
+    width: 250px;
+    height: 35px;
+    margin-right: 20px;
+    border-radius: 50px;
+    text-align: center;
+    transition: all 0.2s linear;
+    border: 1px solid #ccc;
+    float: right;
+}
+
+.inputT:hover {
+    background-color: #f0f0f0;
+    /* Change background color on hover */
+    border: 2px rgb(113, 161, 227);
+    transition: 0.2s;
+    box-shadow: 0 0 10px rgba(86, 219, 243, 0.97);
+}
+
+.bttn {
+    display: inline-block;
+    width: 60%;
+    padding: 12px 0px;
+    background: #070f40;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 40px;
+}
+
+.bttn:hover {
+    background-color: #103770;
+    /* Change background color on hover */
+    border: 2px rgb(113, 161, 227);
+    transition: 0.2s;
+    box-shadow: 0 0 10px rgba(86, 219, 243, 0.97);
+}
+
+
+.resetPasswordForm label {
+    margin-top: 30px;
+    display: inline-block;
+    width: 100px;
+    /* Adjust label width as needed */
+    text-align: left;
+    /* Align label text to the left */
+    margin-right: 10px;
+    /* Add spacing between label and input */
+}
+
+
+ /* Employee dashboard Chart*/
+ .ChartCss{
+
+    width: 800px;
+    display: flex; /* Side by side layout */
+    margin-top: 90px;
+    margin-left: 200px;
+}
+
+
+/*Attendence page*/
+
+.attendance-content{
+    display: flex;
+    width: auto;
+}
+.attendance-content-inner2{
+    display: flex;
+    margin-left: 200px;
+}
+.attendence-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.attendence-details-card {
+    flex: 1 1 50%; /* Equal width with spacing */
+    background-color: #f9f9f9;
+    border: 2px solid #4CAF50;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendence-details-card h1, .attendence-details-card h2 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+.attendence-details-card p {
+    margin: 8px 0;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.attendence-success-message {
+   
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 20px;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Employee Management Page*/
