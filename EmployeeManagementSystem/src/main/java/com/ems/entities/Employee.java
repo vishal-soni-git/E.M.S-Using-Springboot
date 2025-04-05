@@ -1,11 +1,14 @@
 package com.ems.entities;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,5 +42,8 @@ public class Employee {
       @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] photo;
+
+    @Transient
+    private MultipartFile photoFile;
 
 }

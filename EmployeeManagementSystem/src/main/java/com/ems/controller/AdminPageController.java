@@ -1,11 +1,9 @@
 package com.ems.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ems.entities.Employee;
 import com.ems.entities.EmployeeLeave;
 import com.ems.entities.Posts;
 import com.ems.service.EmployeeLeaveService;
@@ -24,8 +23,6 @@ import com.ems.service.EmployeeService;
 import com.ems.service.PostsService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 @Controller
@@ -51,14 +48,27 @@ public class AdminPageController {
         return "AdminEmployeeManagement";
     }
 
-    @PostMapping("/addEmployee")
-    public String addEmployee(@RequestBody String entity) {
-        //TODO: process POST request
-        
-        return entity;
-    }
-    
+    @GetMapping("/employeeAdd")
+    public String employeeAddPage() {
 
+        return "EmployeeAdd";
+    }
+
+    @PostMapping("/employee/add")
+    public String addEmployee(@ModelAttribute Employee employee)throws IOException {
+
+         if (!employee.getPhotoFile().isEmpty()) {
+             employee.setPhoto(employee.getPhotoFile().getBytes());
+         }
+         employeeService.saveEmployee(employee);
+
+         System.out.println("Employee Save Successfully "+employee.toString());
+        
+        return "redirect:/admin/EmployeeManagement";
+    }    
+
+
+    
     @GetMapping("/leaveManagement")
     public String leaveManagement(Model model) {
         return "AdminLeaveManagement";
@@ -99,7 +109,7 @@ public class AdminPageController {
         return "AdminAttendence";
     }
     
-
+    
 
 
     @GetMapping("/uploadUpdates")
