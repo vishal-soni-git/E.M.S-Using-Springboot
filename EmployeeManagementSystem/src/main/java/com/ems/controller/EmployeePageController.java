@@ -46,6 +46,7 @@ public class EmployeePageController {
 
     @GetMapping("/EmployeeDashboard")
     public String employeeDashboard() {
+        System.out.println("+++++++ Employee Page Open ++++++");
         return "EmployeeDashboard"; // dashboard.html in templates folder
     }
 

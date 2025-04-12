@@ -30,12 +30,12 @@ public class UserAuthenticate implements AuthenticateService {
                 System.out.println("Login Success as Admin........................");
                 model.addAttribute("email", email);
                 System.out.println(email);
-                return "AdminDashboard";  // Redirect to dashboard
+                return "redirect:/admin/AdminDashboard";  // Redirect to dashboard
 
             } else {
                 System.out.println("Login Failed as Admin........................");
                 model.addAttribute("error", "Invalid Admin Email or Password");
-                return "error";  // Stay on login page with error
+                return "redirect:/error";  // Stay on login page with error
             }
          }
 
@@ -55,19 +55,19 @@ public class UserAuthenticate implements AuthenticateService {
                 model.addAttribute("employee", "employee");
                 model.addAttribute("email", email);
                 System.out.println(email);
-                return "EmployeeDashboard";  // Redirect to dashboard
+                return "redirect:/employee/EmployeeDashboard";  // Redirect to dashboard
             } else {
 
                 System.out.println("Login Failed as Employee........................");
                 model.addAttribute("error", "Invalid Employee Email or Password");
-                return "error";  // Stay on login page with error
+                return "redirect:/error";  // Stay on login page with error
             }
          }
 
          else{
             System.out.println("Login Failed due to userRole........................");
             model.addAttribute("error", "Invalid User");
-            return "login"; 
+            return "redirect:/login"; 
          }
     }
 

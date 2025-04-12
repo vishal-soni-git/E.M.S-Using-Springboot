@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ems.entities.Employee;
 import com.ems.entities.EmployeeLeave;
@@ -23,6 +25,8 @@ import com.ems.service.EmployeeService;
 import com.ems.service.PostsService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -40,7 +44,13 @@ public class AdminPageController {
 
     @GetMapping("/AdminDashboard")
     public String adminDashboard() {
+
+        System.out.println("Admin page Open ++++++++++++++++");
         return "AdminDashboard";
+    }
+    @GetMapping("/showMessage")
+    public String showMessagePage() {
+        return "Message"; // This will render Message.html
     }
 
     @GetMapping("/EmployeeManagement")
@@ -50,25 +60,82 @@ public class AdminPageController {
 
     @GetMapping("/employeeAdd")
     public String employeeAddPage() {
-
+        System.out.println("Employee Add page open ++++++++++++");
         return "EmployeeAdd";
     }
 
     @PostMapping("/employee/add")
-    public String addEmployee(@ModelAttribute Employee employee)throws IOException {
+    public String addEmployee(@ModelAttribute Employee employee,RedirectAttributes redirectAttributes)throws IOException {
 
          if (!employee.getPhotoFile().isEmpty()) {
              employee.setPhoto(employee.getPhotoFile().getBytes());
          }
          employeeService.saveEmployee(employee);
 
-         System.out.println("Employee Save Successfully "+employee.toString());
-        
-        return "redirect:/admin/EmployeeManagement";
+         redirectAttributes.addFlashAttribute("message", "Employee ID: "+employee.getId()+" Save Successfully!");
+
+         System.out.println("Employee Save Successfully ");
+
+      return "redirect:/admin/showMessage";
     }    
-
-
     
+    @GetMapping("/employeeRemove")
+    public String getMethodName() {
+        System.out.println("Inside EmployeeRemove Page");
+        return "EmployeeRemove";
+    }
+
+    @PostMapping("/find")
+    public String findEmployee(@RequestParam("empId") Integer id, Model model) {
+
+        System.out.println("Inside find method");
+        // You can use ID or name depending on your requirement
+         Optional<Employee> employee = employeeService.findById(id);
+
+
+        if (employee != null) {
+            if (employeeService.isEmployeeExist(id)) {
+
+                model.addAttribute("employee", employee.get());
+
+                String base64Photo = employee.get().getPhoto() != null ? Base64.getEncoder().encodeToString(employee.get().getPhoto()) : null;
+               
+                 model.addAttribute("image", base64Photo); 
+            }
+            else
+            {
+                model.addAttribute("error", "Employee not found.");
+            }
+          
+        } else {
+            model.addAttribute("error", "Employee not found.");
+        }
+
+        return "/EmployeeRemove"; // same page name as the form
+    }
+
+    @PostMapping("/delete")
+    public String postMethodName(@RequestParam("empId") Integer id,RedirectAttributes redirectAttributes) {
+       System.out.println("Inside Delete Method");
+
+
+       boolean b=employeeService.deleteEmployee(id);
+        
+       if (b) {
+        System.out.println("Employee Delete Successfully ");
+
+        redirectAttributes.addFlashAttribute("message", "Employee ID: "+id+" Delete Successfully!");
+       }
+       else
+       {
+        redirectAttributes.addFlashAttribute("error", "Employee Not Delete Or Not Exist");
+       }
+        
+     return "redirect:/admin/showMessage";
+    }
+        
+
+
     @GetMapping("/leaveManagement")
     public String leaveManagement(Model model) {
         return "AdminLeaveManagement";

@@ -35,4 +35,19 @@ public class EmployeeService {
        return employeeRepository.findById(employeeId);
     }
 
+    public boolean isEmployeeExist(int id){
+
+        return employeeRepository.existsById(id);
+    }
+
+    public boolean deleteEmployee(int id){
+        if(employeeRepository.existsById(id)){
+            employeeRepository.deleteById(id);
+            return true;
+        }
+        else{
+        return false;
+        }
+    }
+
 }
