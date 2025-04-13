@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ems.entities.Employee;
 import com.ems.service.AuthenticateService;
@@ -17,7 +18,7 @@ public class UserAuthenticate implements AuthenticateService {
     EmployeeService employeeService;
 
     @Override
-    public String authenticate(String userRole, String userEmail, String userPassword,Model model) {
+    public String authenticate(String userRole, String userEmail, String userPassword,Model model,RedirectAttributes redirectAttributes) {
 
         String user=userRole.trim();
         String email=userEmail.trim();
@@ -28,7 +29,8 @@ public class UserAuthenticate implements AuthenticateService {
             if (email.equals("admin@example.com") && password.equals("password")) {
 
                 System.out.println("Login Success as Admin........................");
-                model.addAttribute("email", email);
+              //  model.addAttribute("email", email);
+              redirectAttributes.addFlashAttribute("email", email);
                 System.out.println(email);
                 return "redirect:/admin/AdminDashboard";  // Redirect to dashboard
 

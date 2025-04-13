@@ -1,5 +1,6 @@
 package com.ems.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +49,11 @@ public class EmployeeService {
         else{
         return false;
         }
+    }
+
+    public String convertIntoBase64Photo(byte[] photo){
+
+        return photo != null ? Base64.getEncoder().encodeToString(photo) : null;
     }
 
 }

@@ -48,6 +48,12 @@ public class AdminPageController {
         System.out.println("Admin page Open ++++++++++++++++");
         return "AdminDashboard";
     }
+
+    @GetMapping("/adminProfile")
+    public String getMethodName() {
+        return "AdminProfile";
+    }
+    
     @GetMapping("/showMessage")
     public String showMessagePage() {
         return "Message"; // This will render Message.html
@@ -64,6 +70,18 @@ public class AdminPageController {
         return "EmployeeAdd";
     }
 
+    @GetMapping("/employeeRemove")
+    public String getEmployeeRemove() {
+        System.out.println("Inside EmployeeRemove Page");
+        return "EmployeeRemove";
+    }
+
+    @GetMapping("/employeeShow")
+    public String getEmployeeShow() {
+        return "EmployeeShow";
+    }
+    
+
     @PostMapping("/employee/add")
     public String addEmployee(@ModelAttribute Employee employee,RedirectAttributes redirectAttributes)throws IOException {
 
@@ -78,15 +96,10 @@ public class AdminPageController {
 
       return "redirect:/admin/showMessage";
     }    
-    
-    @GetMapping("/employeeRemove")
-    public String getMethodName() {
-        System.out.println("Inside EmployeeRemove Page");
-        return "EmployeeRemove";
-    }
 
     @PostMapping("/find")
-    public String findEmployee(@RequestParam("empId") Integer id, Model model) {
+    public String findEmployee(@RequestParam("empId") Integer id,@RequestParam("pageName") String pageName,
+     Model model) {
 
         System.out.println("Inside find method");
         // You can use ID or name depending on your requirement
@@ -98,7 +111,7 @@ public class AdminPageController {
 
                 model.addAttribute("employee", employee.get());
 
-                String base64Photo = employee.get().getPhoto() != null ? Base64.getEncoder().encodeToString(employee.get().getPhoto()) : null;
+                String base64Photo = employeeService.convertIntoBase64Photo(employee.get().getPhoto());
                
                  model.addAttribute("image", base64Photo); 
             }
@@ -110,8 +123,7 @@ public class AdminPageController {
         } else {
             model.addAttribute("error", "Employee not found.");
         }
-
-        return "/EmployeeRemove"; // same page name as the form
+        return "/"+pageName; // same page name as the form
     }
 
     @PostMapping("/delete")
@@ -133,8 +145,6 @@ public class AdminPageController {
         
      return "redirect:/admin/showMessage";
     }
-        
-
 
     @GetMapping("/leaveManagement")
     public String leaveManagement(Model model) {

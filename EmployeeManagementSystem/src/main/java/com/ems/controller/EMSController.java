@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ems.entities.Employee;
 import com.ems.service.AuthenticateService;
@@ -40,14 +41,15 @@ public class EMSController {
     }
     
     @PostMapping("/login")
-    public String processLogin(@RequestParam("userRole") String user, @ModelAttribute("employee") Employee employee,Model model,HttpSession session) {    
+    public String processLogin(@RequestParam("userRole") String user, @ModelAttribute("employee") Employee employee,Model model,HttpSession session
+    ,RedirectAttributes redirectAttributes) {    
        
         session.setAttribute("employeeEmail", employee.getEmail());
         
         System.out.println("Setting Session "+session.getAttribute("employeeEmail"));
       
         System.out.println("Login proceed.............");
-        return userAuthenticate.authenticate(user, employee.getEmail(), employee.getPassword(), model);
+        return userAuthenticate.authenticate(user, employee.getEmail(), employee.getPassword(), model, redirectAttributes);
         
     }
 

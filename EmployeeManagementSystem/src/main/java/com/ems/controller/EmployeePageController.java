@@ -65,14 +65,12 @@ public class EmployeePageController {
 
             if (!l.isEmpty()) {
                 Employee emp = l.get(0); // Assuming the employee is unique by email
-                // Convert the photo to base64
-                String base64Photo = emp.getPhoto() != null ? Base64.getEncoder().encodeToString(emp.getPhoto()) : null;
-               // emp.setPhoto(base64Photo);  // Set the base64 encoded photo
+                // Convert the photo to base64 for showing in html
+                String base64Photo = es.convertIntoBase64Photo(emp.getPhoto());
+      
                 model.addAttribute("employee", emp);  // Add the single employee object (not list) to model
                 model.addAttribute("image", base64Photo);
             }
-          
-          //  model.addAttribute("employee", l);
             return "EmployeeProfile"; // Return profile view
         }
         return "redirect:/login";
@@ -92,7 +90,6 @@ public class EmployeePageController {
 
      @GetMapping("/EmployeeLeave")
     public String employeeLeave(Model model) {
-      //  model.addAttribute("employeeLeaves", employeeLeaveService.getAllByIdDesc());
         return "EmployeeLeave";  // Refers to EmployeeLeave.html in templates
     }
 
@@ -109,7 +106,6 @@ public class EmployeePageController {
 
         return "redirect:/employee/EmployeeLeave"; // Redirect to GET endpoint
     }
-    
 
     // Employee Attendence Code Working
     @GetMapping("/EmployeeAttendence")
@@ -126,10 +122,8 @@ public class EmployeePageController {
 
                     if(employeeAttendenceService.hasMarkedAttendanceToday(employee.getId(), LocalDate.now())){
  
-                     //   model.addAttribute("message", "Attendance Already Marked!");
                         redirectAttributes.addFlashAttribute("message", "Attendance Already Marked!");
-                        return "redirect:/employee/EmployeeAttendence";
-                        
+                        return "redirect:/employee/EmployeeAttendence";               
                     }
                    else{
                     EmployeeAttendence ea=new EmployeeAttendence();
@@ -139,10 +133,6 @@ public class EmployeePageController {
                     ea.setStatus("PRESENT");
            
                     employeeAttendenceService.saveEmployeeAttendence(ea);
-           
-                //    model.addAttribute("employeeDetails", employee);
-                //    model.addAttribute("attendance", ea);
-                //    model.addAttribute("message", "Attendance Marked Successfully!");
 
                    redirectAttributes.addFlashAttribute("employeeDetails", employee);
                    redirectAttributes.addFlashAttribute("attendance", ea);

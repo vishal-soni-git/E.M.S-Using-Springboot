@@ -13,49 +13,14 @@
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
-            <li>
-                <a th:href="@{/admin/AdminDashboard}" class='active'>
-                    <i class="fas fa-tachometer-alt"> </i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/admin/#">
-                    <i class="fas fa-user"> </i>
-                    <span>Account</span>
-                </a>
-            </li>
-            <li>
-              <a th:href="@{/admin/EmployeeManagement}">
-                  <i class="fa fa-users"> </i>
-                  <span>Employee Management</span>
-              </a>
-          </li>
-            <li>
-                <a th:href="@{/admin/leaveManagement}">
-                    <i class="fas fa-bed"> </i>
-                    <span>Leave Management</span>
-                </a>
-            </li>
-            <li>
-                <a href="/admin/AdminAttendence">
-                    <i class="fas fa-id-card"> </i>
-                    <span>Attendance Management</span>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/admin/uploadUpdates}">
-                    <i class="fas fa-star"> </i>
-                    <span>Upload Updates</span>
-                </a>
-            </li>
-            <li class="logout">
-                <a th:href="@{/logout}">
-                    <i class="fas fa-sign-out-alt"> </i>
-                    <span>Logout</span>
-                </a>
-            </li>
-        </ul>
+          <li><a th:href="@{/admin/AdminDashboard}" class='active'><i class="fas fa-tachometer-alt"> </i><span>Dashboard</span></a></li>
+          <li><a href="/admin/adminProfile"><i class="fas fa-user"> </i><span>Account</span></a></li>
+          <li><a th:href="@{/admin/EmployeeManagement}"><i class="fas fa fa-users"> </i><span>Employee Management</span></a></li>
+          <li><a th:href="@{/admin/leaveManagement}"><i class="fas fa-bed"> </i><span>Leave Management</span></a></li>
+          <li><a href="/admin/AdminAttendence"><i class="fas fa-id-card"> </i><span>Attendance Management</span></a></li>
+          <li><a th:href="@{/admin/uploadUpdates}"><i class="fas fa-star"> </i><span>Upload Updates</span></a></li>
+          <li class="logout"><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"> </i><span>Logout</span></a></li>
+      </ul>
     </div>
 
     <div class='main--content'>
