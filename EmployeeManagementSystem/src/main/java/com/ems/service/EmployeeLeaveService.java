@@ -39,5 +39,24 @@ public class EmployeeLeaveService {
     public List<EmployeeLeave> getAllByIdDesc() {
         return employeeLeaveRepository.findAllByOrderByIdDesc();
     }
+
+    public void leaveProcess(String action, String empId){
+        EmployeeLeave employeeLeave=getEmployeeById(Integer.parseInt(empId));
+       
+        if(action.equals("accept"))
+        {
+            employeeLeave.setStatus("ACCEPT");
+            System.out.println("Accept leave");
+        }
+        else if (action.equals("reject")) {
+            employeeLeave.setStatus("REJECT");
+            System.out.println("Reject Leaves");
+        }
+        else{
+            System.out.println("some error action not found");
+        }
+
+        save(employeeLeave);
+    }
 }
 

@@ -20,13 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ems.entities.Employee;
 import com.ems.entities.EmployeeLeave;
 import com.ems.entities.Posts;
+import com.ems.service.EmployeeAttendenceService;
 import com.ems.service.EmployeeLeaveService;
 import com.ems.service.EmployeeService;
 import com.ems.service.PostsService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.ems.entities.EmployeeAttendence;
 
 
 @Controller
@@ -41,6 +42,9 @@ public class AdminPageController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    EmployeeAttendenceService employeeAttendenceService;
 
     @GetMapping("/AdminDashboard")
     public String adminDashboard() {
@@ -81,7 +85,6 @@ public class AdminPageController {
         return "EmployeeShow";
     }
     
-
     @PostMapping("/employee/add")
     public String addEmployee(@ModelAttribute Employee employee,RedirectAttributes redirectAttributes)throws IOException {
 
@@ -158,36 +161,34 @@ public class AdminPageController {
     }
 
     @PostMapping("/leaveManagement/process")
-    public String postMethodName(@RequestParam("action") String action, @RequestParam("requestId") String empId) {
+    public String leaveManagementProcess(@RequestParam("action") String action, @RequestParam("requestId") String empId) {
 
-        EmployeeLeave employeeLeave=employeeLeaveService.getEmployeeById(Integer.parseInt(empId));
-       
-        if(action.equals("accept"))
-        {
-            employeeLeave.setStatus("ACCEPT");
-            System.out.println("Accept leave");
-        }
-        else if (action.equals("reject")) {
-            employeeLeave.setStatus("REJECT");
-            System.out.println("Reject Leaves");
-        }
-        else{
-            System.out.println("some error action not found");
-        }
-
-        employeeLeaveService.save(employeeLeave);
+       employeeLeaveService.leaveProcess(action, empId);
         
         return "/AdminLeaveManagement";
     }
     
+
+      //creating for geting data from db to html page
+      @ModelAttribute("employeeAttendences")
+      public List<EmployeeAttendence> getEmployeeAttendence(Model model) {
+        List<EmployeeAttendence> list= employeeAttendenceService.getAttendaceByDate(LocalDate.now());
+        return list;
+      }
 
     @GetMapping("/AdminAttendence")
     public String getAdminAttendence() {
         return "AdminAttendence";
     }
     
-    
 
+    @PostMapping("/employeeAttendences/process")
+    public String employeeAttendanceProcess(@RequestParam("action") String action, @RequestParam("requestId") String id) {
+        
+      employeeAttendenceService.markOrUnmarkAttendence(action, id);
+        
+        return "/AdminAttendence";
+    }
 
     @GetMapping("/uploadUpdates")
     public String getUploadUpdate() {

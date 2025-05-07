@@ -1,6 +1,8 @@
 package com.ems.repository;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,5 +16,10 @@ public interface EmployeeAttendenceRepository extends JpaRepository<EmployeeAtte
 
      @Query("SELECT COUNT(e) > 0 FROM EmployeeAttendence e WHERE e.empId = :empId AND e.date = :date")
     boolean existsByEmpIdAndDate(@Param("empId") Integer empId, @Param("date") LocalDate date);
+
+     List<EmployeeAttendence> findByDate(LocalDate date);
+
+     EmployeeAttendence findByEmpIdAndDate(int empId, LocalDate date);
+      
 
 }

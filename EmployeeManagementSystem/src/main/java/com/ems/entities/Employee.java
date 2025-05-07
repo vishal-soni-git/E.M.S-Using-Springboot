@@ -44,6 +44,8 @@ public class Employee {
     private byte[] photo;
 
     @Transient
+    
     private MultipartFile photoFile;
+
 
 }

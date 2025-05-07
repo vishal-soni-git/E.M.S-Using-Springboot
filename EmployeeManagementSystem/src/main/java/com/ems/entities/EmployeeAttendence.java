@@ -18,7 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
-
 public class EmployeeAttendence {
 
     @Id

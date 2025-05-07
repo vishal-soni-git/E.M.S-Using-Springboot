@@ -31,7 +31,6 @@ public class EmployeeService {
         return employeeRepository.findByEmail(email);
     }
     
-
     public Optional<Employee> findById(Integer employeeId) {
        return employeeRepository.findById(employeeId);
     }

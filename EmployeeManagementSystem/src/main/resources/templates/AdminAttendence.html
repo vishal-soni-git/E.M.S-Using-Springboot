@@ -49,17 +49,58 @@
     <div class='main--content'>
         <div class="header--wrapper">
             <div class="header--title">
-                <span>Primary</span>
-                <h2>Dashboard</h2>
+                <h2>Attendence Management</h2>
             </div>
             <div class="user--info">
                 <img th:src="@{/images/emp.jpg}" alt="">
             </div>
         </div>
 
-        <div class='content--header'>Attendence Management</div>
+        <div class='content--header'>Manage Attendence</div>
 
-     
+        
+
+
+
+        <div class='show--table'>
+            <table class='show--table--content'>
+                <tr>
+                    <th>Attendece ID</th>
+                    <th>Employee ID</th>
+                    <th>date</th>
+                    <th>time</th>
+                    <th>Status</th>
+                    <th>Take Action</th>
+                </tr>
+                <tr th:each="employeeAttendence : ${employeeAttendences}">
+
+                    <td th:text="${employeeAttendence.id}"></td>
+                    <td th:text="${employeeAttendence.empId}"></td>
+                    <td th:text="${employeeAttendence.date}"></td>
+                    <td th:text="${employeeAttendence.time}"></td>
+                    <td th:text="${employeeAttendence.status}"></td>
+                    <td>
+                        <form th:action="@{/admin/employeeAttendences/process}" method="post">
+                            <input type="hidden" name="requestId" th:value="${employeeAttendence.id}">
+                            <input type="hidden" name="employeeId" th:value="${employeeAttendence.empId}">
+                            <button name="action" value="accept" type="submit" style="background-color: rgb(127, 127, 245);">Marked</button>
+                        </form>
+                        <br>
+                        <form th:action="@{/admin/employeeAttendences/process}" method="post">
+                            <input type="hidden" name="requestId" th:value="${employeeAttendence.id}">
+                            <input type="hidden" name="employeeId" th:value="${employeeAttendence.empId}">
+                            <button name="action" value="reject" type="submit" style="background-color: rgb(235, 80, 80);">UnMarked</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+
 
            
         </div>
